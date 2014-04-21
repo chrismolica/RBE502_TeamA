@@ -113,20 +113,35 @@ global sliderval;
 
 %%call our function
 M = [sin(0:.1:10); cos(0:.1:10); 10:-.1:0; 10:-.1:0; 2*cos(0:.1:10); 2*sin(0:.1:10); 2*sin(0:.1:10);  2*cos(0:.1:10); 2*sin(0:.1:10)];
+%%estimated terms
 axes(handles.axes5);
 plot(M(7,:));
+    title('Estimation');
 hold on;
 plot(M(8,:));
+
+%%adaptive stiffness
 axes(handles.axes2);
 plot(M(2,:));
+    title('adaptive stiffness');
 
 axes(handles.axes1);
 %plot([0 0;1 1],[1 1;0 2]);
 s = size(M(1,:));
 loop = s(1,2);
 for i=1:1:loop
-plot([],[]);
 delete(allchild(handles.axes1))
+X = plotLines(M(3,i), M(4,i), M(1,i),M(2,i));
+plot([X(1),X(2)],[X(4),X(5)],'black','LineWidth',1.75);
+    hold on;
+    plot([X(2), X(3)],[X(5), X(6)],'black','LineWidth',1.75 );
+    plot(X(2), X(5), '.r', 'MarkerSize',15)
+    plot(X(1), X(4), '.b', 'MarkerSize',15)
+    plot(X(3), X(6), '.b', 'MarkerSize',15)
+    axis([-2 5 -2 5])
+    title('animation');
+
+pause(.1);
 end
 
 %plot(cos(0:.1:sliderval));
