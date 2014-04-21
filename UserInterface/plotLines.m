@@ -15,6 +15,7 @@ function  plotLines(x1, y1, th1, th2)
     plot(x2, y2, '.r', 'MarkerSize',30)
     plot(x1, y1, '.b', 'MarkerSize',30)
     plot(x3, y3, '.b', 'MarkerSize',30)
+    plot([-2 10], [0 0], 'black')
     axis([-2 10 -2 10])
 
 end
